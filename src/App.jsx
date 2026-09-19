@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { ArrowRight, ArrowUp, CaretDown, TelegramLogo, X } from '@phosphor-icons/react';
+import { ArrowRight, ArrowUp, ArrowUpRight, CaretDown, TelegramLogo, X } from '@phosphor-icons/react';
 import { copy } from './content';
 
 function initialLanguage() {
@@ -48,6 +48,6 @@ export function App() {
     <footer><p>{c.footer}</p><a href="#about" onClick={event=>navigate('about',event)}>{c.top}<ArrowUp size={16} aria-hidden="true"/></a></footer>
    </main>
   </div>
-  <dialog ref={dialogRef} className="project-dialog" aria-labelledby="project-dialog-title" onClose={()=>setSelected(null)} onClick={event=>{if(event.target===event.currentTarget)closeProject();}}>{project&&<article><button className="close-dialog" aria-label={c.close} onClick={closeProject}><X size={24}/></button><figure><img src={`/images/${project.id}.webp`} alt="" width="912" height="440"/><figcaption>{c.illustration}</figcaption></figure><h2 id="project-dialog-title">{project.name}</h2><p className="dialog-summary">{project.summary}</p><h3>{c.problem}</h3><p>{project.idea}</p><h3>{c.solution}</h3><p>{project.solution}</p><h3>{c.stack}</h3><Tags items={project.stack}/><button className="back-link" onClick={closeProject}>{c.back}<ArrowRight size={19} aria-hidden="true"/></button></article>}</dialog>
+  <dialog ref={dialogRef} className="project-dialog" aria-labelledby="project-dialog-title" onClose={()=>setSelected(null)} onClick={event=>{if(event.target===event.currentTarget)closeProject();}}>{project&&<article><button className="close-dialog" aria-label={c.close} onClick={closeProject}><X size={24}/></button><figure><img src={`/images/${project.id}.webp`} alt="" width="912" height="440"/><figcaption>{c.illustration}</figcaption></figure><h2 id="project-dialog-title">{project.name}</h2><p className="dialog-summary">{project.summary}</p>{project.url&&<a className="contact-link" href={project.url} target="_blank" rel="noopener noreferrer">{c.visit}<ArrowUpRight size={19} aria-hidden="true"/></a>}<h3>{c.problem}</h3><p>{project.idea}</p><h3>{c.solution}</h3><p>{project.solution}</p><h3>{c.stack}</h3><Tags items={project.stack}/><button className="back-link" onClick={closeProject}>{c.back}<ArrowRight size={19} aria-hidden="true"/></button></article>}</dialog>
  </>;
 }
