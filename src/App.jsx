@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { ArrowRight, ArrowUp, CaretDown, X } from '@phosphor-icons/react';
+import { ArrowRight, ArrowUp, CaretDown, TelegramLogo, X } from '@phosphor-icons/react';
 import { copy } from './content';
 
 function initialLanguage() {
@@ -40,7 +40,7 @@ export function App() {
   <a className="skip-link" href="#main">{c.skip}</a>
   <div className="page-shell">
    <div className="language-switch" role="group" aria-label={language==='en'?'Language':'Язык'}><button lang="en" aria-label="English" aria-pressed={language==='en'} onClick={()=>changeLanguage('en')}>EN</button><span aria-hidden="true">/</span><button lang="ru" aria-label="Русский" aria-pressed={language==='ru'} onClick={()=>changeLanguage('ru')}>RU</button></div>
-   <header className="identity"><div><h1>{c.name}</h1><p className="profession">{c.role}</p><p className="tagline">{c.tagline}</p></div><nav aria-label={language==='en'?'Main navigation':'Основная навигация'}>{['about','experience','projects'].map(id=><a key={id} href={`#${id}`} className={activeSection===id?'active':''} aria-current={activeSection===id?'location':undefined} onClick={event=>navigate(id,event)}><span className="nav-line" aria-hidden="true"/><span>{c.nav[id]}</span></a>)}</nav></header>
+   <header className="identity"><div><h1>{c.name}</h1><p className="profession">{c.role}</p><p className="tagline">{c.tagline}</p><a className="contact-link" href="https://t.me/lenarsab" target="_blank" rel="noopener noreferrer" aria-label={`${c.contact} · Telegram @lenarsab`}><TelegramLogo size={21} aria-hidden="true"/><span>Telegram · @lenarsab</span></a></div><nav aria-label={language==='en'?'Main navigation':'Основная навигация'}>{['about','experience','projects'].map(id=><a key={id} href={`#${id}`} className={activeSection===id?'active':''} aria-current={activeSection===id?'location':undefined} onClick={event=>navigate(id,event)}><span className="nav-line" aria-hidden="true"/><span>{c.nav[id]}</span></a>)}</nav></header>
    <main id="main" tabIndex={-1}>
     <section id="about" aria-label={c.nav.about} className="about-section"><p>{c.intro}</p></section>
     <section id="projects" aria-labelledby="projects-heading" className="projects-section"><h2 id="projects-heading">{c.projects}</h2><ul className="projects-list">{c.projectsList.map(item=><li key={item.id}><button className="project-row" aria-label={`${c.details} ${item.name}`} onClick={()=>setSelected(item.id)}><span className="project-image"><img src={`/images/${item.id}.webp`} alt="" width="456" height="220"/></span><span className="project-description"><span className="project-name">{item.name}</span><span className="project-summary">{item.summary}</span><span className="tags" aria-hidden="true">{item.tags.map(tag=><span key={tag}>{tag}</span>)}</span></span><ArrowRight className="project-arrow" size={26} weight="light" aria-hidden="true"/></button></li>)}</ul></section>
